@@ -1,0 +1,14 @@
+table_set_default MyIngress.ipv4_lpm MyIngress.drop
+
+table_add MyIngress.ipv4_lpm MyIngress.ipv4_forward 10.0.0.1/32 1 => B8:CE:F6:AF:85:57 1
+table_add MyIngress.ipv4_lpm MyIngress.ipv4_forward 10.0.0.1/32 2 => B8:CE:F6:AF:83:42 4
+table_add MyIngress.ipv4_lpm MyIngress.ipv4_forward 10.0.0.2/32 1 => 06:A1:DE:72:A3:F4 2
+table_add MyIngress.ipv4_lpm MyIngress.ipv4_forward 10.0.0.2/32 2 => 06:A1:DE:72:A3:F4 2
+
+table_set_default MyIngress.specs_retrieval MyIngress.get_specs 3 2 1 4
+
+table_set_default MyIngress.traffic_origin MyIngress.get_port 1
+
+table_set_default MyIngress.l2_forwarding MyIngress.l2_forward 1
+
+mirroring_add 101 3
